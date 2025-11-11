@@ -94,11 +94,11 @@ class PortScanner: ObservableObject {
 
             let address = parts.dropLast().joined(separator: ":")
             let state = isUDP ? "UDP" : (components.count >= 10 ? String(components[9]) : "LISTEN")
-            let protocol = isUDP ? "UDP" : "TCP"
+            let protocolType = isUDP ? "UDP" : "TCP"
 
             let portInfo = PortInfo(
                 port: port,
-                protocol: protocol,
+                protocolType: protocolType,
                 state: state,
                 processName: processName,
                 pid: pid,

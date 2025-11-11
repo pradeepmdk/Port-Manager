@@ -3,8 +3,13 @@ import SwiftUI
 struct ContentView: View {
     @StateObject private var scanner = PortScanner()
     @State private var searchText = ""
-    @State private var selectedPort: PortInfo?
+    @State private var selectedPortId: PortInfo.ID?
     @State private var showKillConfirmation = false
+
+    var selectedPort: PortInfo? {
+        guard let id = selectedPortId else { return nil }
+        return scanner.ports.first { $0.id == id }
+    }
 
     var filteredPorts: [PortInfo] {
         if searchText.isEmpty {
@@ -104,7 +109,7 @@ struct ContentView: View {
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             } else {
-                Table(filteredPorts, selection: $selectedPort) {
+                Table(filteredPorts, selection: $selectedPortId) {
                     TableColumn("Port") { port in
                         Text(port.displayPort)
                             .fontWeight(.semibold)
@@ -113,7 +118,7 @@ struct ContentView: View {
                     .width(min: 80, max: 100)
 
                     TableColumn("Protocol") { port in
-                        Text(port.protocol)
+                        Text(port.protocolType)
                     }
                     .width(min: 80, max: 100)
 
@@ -143,7 +148,7 @@ struct ContentView: View {
 
                     TableColumn("Actions") { port in
                         Button(action: {
-                            selectedPort = port
+                            selectedPortId = port.id
                             showKillConfirmation = true
                         }) {
                             Image(systemName: "xmark.circle.fill")
@@ -154,7 +159,7 @@ struct ContentView: View {
                     }
                     .width(min: 60, max: 80)
                 }
-                .alternatingRowBackgrounds()
+                .modifier(AlternatingRowBackgroundModifier())
             }
         }
         .frame(minWidth: 900, minHeight: 500)
@@ -172,6 +177,17 @@ struct ContentView: View {
             if let port = selectedPort {
                 Text("Are you sure you want to kill \(port.processName) (PID: \(port.pid)) on port \(port.port)?")
             }
+        }
+    }
+}
+
+// Custom modifier to handle alternatingRowBackgrounds availability
+struct AlternatingRowBackgroundModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        if #available(macOS 14.0, *) {
+            content.alternatingRowBackgrounds()
+        } else {
+            content
         }
     }
 }

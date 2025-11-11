@@ -3,7 +3,7 @@ import Foundation
 struct PortInfo: Identifiable, Hashable {
     let id = UUID()
     let port: Int
-    let protocol: String
+    let protocolType: String
     let state: String
     let processName: String
     let pid: Int
