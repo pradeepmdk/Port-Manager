@@ -1,10 +1,14 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var scanner = PortScanner()
+    @ObservedObject var scanner: PortScanner
     @State private var searchText = ""
     @State private var selectedPortId: PortInfo.ID?
     @State private var showKillConfirmation = false
+
+    init(scanner: PortScanner = PortScanner()) {
+        self.scanner = scanner
+    }
 
     var selectedPort: PortInfo? {
         guard let id = selectedPortId else { return nil }
