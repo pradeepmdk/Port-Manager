@@ -13,6 +13,7 @@
 		AA0000070000000000000001 /* PortInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000080000000000000001 /* PortInfo.swift */; };
 		AA0000230000000000000001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA0000240000000000000001 /* Assets.xcassets */; };
 		AA0000250000000000000001 /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = AA0000260000000000000001 /* AppIcon.icns */; };
+		AA0000270000000000000001 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA0000280000000000000001 /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		AA0000080000000000000001 /* PortInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortInfo.swift; sourceTree = "<group>"; };
 		AA0000240000000000000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA0000260000000000000001 /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIcon.icns; sourceTree = "<group>"; };
+		AA0000280000000000000001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 				AA0000080000000000000001 /* PortInfo.swift */,
 				AA0000240000000000000001 /* Assets.xcassets */,
 				AA0000260000000000000001 /* AppIcon.icns */,
+				AA0000280000000000000001 /* Info.plist */,
 			);
 			path = PortManager;
 			sourceTree = "<group>";
@@ -276,7 +279,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PortManager/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -304,7 +307,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PortManager/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
