@@ -11,6 +11,7 @@
 		AA0000030000000000000001 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000040000000000000001 /* ContentView.swift */; };
 		AA0000050000000000000001 /* PortScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000060000000000000001 /* PortScanner.swift */; };
 		AA0000070000000000000001 /* PortInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000080000000000000001 /* PortInfo.swift */; };
+		AA0000230000000000000001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA0000240000000000000001 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		AA0000040000000000000001 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AA0000060000000000000001 /* PortScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortScanner.swift; sourceTree = "<group>"; };
 		AA0000080000000000000001 /* PortInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortInfo.swift; sourceTree = "<group>"; };
+		AA0000240000000000000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +49,7 @@
 				AA0000040000000000000001 /* ContentView.swift */,
 				AA0000060000000000000001 /* PortScanner.swift */,
 				AA0000080000000000000001 /* PortInfo.swift */,
+				AA0000240000000000000001 /* Assets.xcassets */,
 			);
 			path = PortManager;
 			sourceTree = "<group>";
@@ -117,6 +120,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA0000230000000000000001 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
