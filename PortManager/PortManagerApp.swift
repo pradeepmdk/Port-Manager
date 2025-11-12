@@ -42,35 +42,53 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let button = statusItem?.button {
             print("✅ Status bar button created")
 
-            // Create a custom icon image
-            let image = NSImage(size: NSSize(width: 18, height: 18))
-            image.lockFocus()
+            // Try to load the custom AppIcon.icns
+            if let iconPath = Bundle.main.path(forResource: "AppIcon", ofType: "icns"),
+               let iconImage = NSImage(contentsOfFile: iconPath) {
+                // Use the beautiful dock icon in menu bar
+                let resizedIcon = NSImage(size: NSSize(width: 18, height: 18))
+                resizedIcon.lockFocus()
+                iconImage.draw(in: NSRect(x: 0, y: 0, width: 18, height: 18),
+                              from: NSRect(x: 0, y: 0, width: iconImage.size.width, height: iconImage.size.height),
+                              operation: .copy,
+                              fraction: 1.0)
+                resizedIcon.unlockFocus()
+                resizedIcon.isTemplate = false  // Keep colors, don't make it monochrome
 
-            // Draw a simple port/network icon
-            let path = NSBezierPath()
-            // Draw three horizontal lines (representing ports)
-            NSColor.white.setStroke()
-            path.lineWidth = 2
+                button.image = resizedIcon
+                print("✅ Using custom AppIcon.icns for menu bar")
+            } else {
+                // Fallback: Create a simple icon
+                let image = NSImage(size: NSSize(width: 18, height: 18))
+                image.lockFocus()
 
-            path.move(to: NSPoint(x: 2, y: 4))
-            path.line(to: NSPoint(x: 16, y: 4))
+                // Draw three horizontal lines (representing ports)
+                NSColor.white.setStroke()
+                let path = NSBezierPath()
+                path.lineWidth = 2
 
-            path.move(to: NSPoint(x: 2, y: 9))
-            path.line(to: NSPoint(x: 16, y: 9))
+                path.move(to: NSPoint(x: 2, y: 4))
+                path.line(to: NSPoint(x: 16, y: 4))
 
-            path.move(to: NSPoint(x: 2, y: 14))
-            path.line(to: NSPoint(x: 16, y: 14))
+                path.move(to: NSPoint(x: 2, y: 9))
+                path.line(to: NSPoint(x: 16, y: 9))
 
-            path.stroke()
-            image.unlockFocus()
-            image.isTemplate = true
+                path.move(to: NSPoint(x: 2, y: 14))
+                path.line(to: NSPoint(x: 16, y: 14))
 
-            button.image = image
+                path.stroke()
+                image.unlockFocus()
+                image.isTemplate = true
+
+                button.image = image
+                print("⚠️ Using fallback icon (AppIcon.icns not found)")
+            }
+
             button.action = #selector(handleClick)
             button.sendAction(on: [.leftMouseUp, .rightMouseUp])
             button.target = self
 
-            print("✅ Icon created and assigned")
+            print("✅ Icon assigned to menu bar")
         } else {
             print("❌ Failed to create status bar button")
         }
