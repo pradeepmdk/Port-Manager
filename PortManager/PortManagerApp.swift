@@ -18,22 +18,30 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var scanner = PortScanner()
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-        // Check if another instance is already running
-        let runningApps = NSWorkspace.shared.runningApplications
-        let otherInstances = runningApps.filter {
-            $0.bundleIdentifier == Bundle.main.bundleIdentifier && $0 != NSRunningApplication.current
-        }
+        print("🚀 App launching...")
+        print("📦 Bundle ID: \(Bundle.main.bundleIdentifier ?? "nil")")
 
-        if !otherInstances.isEmpty {
-            // Another instance is running, activate it and quit this one
-            otherInstances.first?.activate(options: .activateIgnoringOtherApps)
-            NSApp.terminate(nil)
-            return
-        }
+        // Temporarily disabled singleton check for debugging
+        // Check if another instance is already running
+        // let runningApps = NSWorkspace.shared.runningApplications
+        // let otherInstances = runningApps.filter {
+        //     $0.bundleIdentifier == Bundle.main.bundleIdentifier && $0 != NSRunningApplication.current
+        // }
+        //
+        // if !otherInstances.isEmpty {
+        //     print("⚠️ Another instance found, quitting")
+        //     otherInstances.first?.activate(options: .activateIgnoringOtherApps)
+        //     NSApp.terminate(nil)
+        //     return
+        // }
+
+        print("✅ No other instance, creating status bar...")
         // Create status bar item with icon
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
 
         if let button = statusItem?.button {
+            print("✅ Status bar button created")
+
             // Create a custom icon image
             let image = NSImage(size: NSSize(width: 18, height: 18))
             image.lockFocus()
@@ -61,21 +69,31 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             button.action = #selector(handleClick)
             button.sendAction(on: [.leftMouseUp, .rightMouseUp])
             button.target = self
+
+            print("✅ Icon created and assigned")
+        } else {
+            print("❌ Failed to create status bar button")
         }
 
         // Create popover with content view
+        print("📦 Creating popover...")
         popover = NSPopover()
         popover?.contentSize = NSSize(width: 900, height: 500)
         popover?.behavior = .transient
         popover?.contentViewController = NSHostingController(rootView: ContentView(scanner: scanner))
+        print("✅ Popover created")
 
         // Start scanning ports
+        print("🔍 Starting initial port scan...")
         scanner.scanPorts()
 
         // Auto-refresh every 5 seconds
         Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { _ in
             self.scanner.scanPorts()
         }
+
+        print("🎉 App fully initialized!")
+        print("👀 Look for ≡ icon in menu bar (top-right)")
     }
 
     @objc func handleClick() {
