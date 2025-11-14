@@ -18,7 +18,16 @@ A native macOS application built with Swift and SwiftUI to manage and monitor al
 
 ## Installation
 
-### Option 1: Build from Source
+### Option 1: Download Pre-built App (Recommended)
+
+1. Go to the [Releases page](https://github.com/pradeepmdk/Port-Manager-Mac/releases)
+2. Download the latest `PortManager-v*.dmg` file
+3. Open the DMG file
+4. Drag **PortManager.app** to your **Applications** folder
+5. Launch Port Manager from Applications
+6. The app will appear in your menu bar
+
+### Option 2: Build from Source
 
 1. Open the project in Xcode:
    ```bash
@@ -29,7 +38,7 @@ A native macOS application built with Swift and SwiftUI to manage and monitor al
 
 3. Build and run the app (⌘+R)
 
-### Option 2: Build from Command Line
+### Option 3: Build from Command Line
 
 ```bash
 xcodebuild -project PortManager.xcodeproj -scheme PortManager -configuration Release build
